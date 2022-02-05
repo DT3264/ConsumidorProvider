@@ -20,27 +20,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Leer"/>
+    <EditText
+        android:id="@+id/txtID"
+        android:hint="ID"
+        android:textColorHint="@color/design_default_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/txtNombre"
+        android:hint="Nombre"
+        android:textColorHint="@color/design_default_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/txtApellido"
+        android:hint="Apellido"
+        android:textColorHint="@color/design_default_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btnInsertar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Insertar"/>
-    <EditText
-        android:id="@+id/txtID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/txtApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btnActualiza"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Actualiza"/>
+        android:text="Actualizar"/>
+    <Button
+        android:id="@+id/btnBorrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Borrar"/>
 
 </LinearLayout>

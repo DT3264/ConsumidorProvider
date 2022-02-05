@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnInsertar;
     Button btnLeer;
     Button btnActualiza;
+    Button btnBorra;
     TextView txt;
     EditText txtID, txtNombre, txtApellido;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btnLeer = findViewById(R.id.btnLeer);
         btnInsertar = findViewById(R.id.btnInsertar);
         btnActualiza = findViewById(R.id.btnActualiza);
+        btnBorra = findViewById(R.id.btnBorrar);
 
         btnInsertar.setOnClickListener(view -> {
             insertaValor();
@@ -41,12 +43,27 @@ public class MainActivity extends AppCompatActivity {
         btnActualiza.setOnClickListener(view -> {
             actualizaDatos();
         });
+        btnBorra.setOnClickListener(view -> {
+            borraValor();
+        });
+    }
+
+    private void borraValor() {
+        String id = txtID.getText().toString();
+
+        limpiaCajas();
+
+        Uri nuevaUri = Uri.withAppendedPath(UsuarioContrato.CONTENT_URI, id);
+        int resultado = getContentResolver().delete(nuevaUri, null, null);
+        txt.setText("Borrado?: " + resultado);
     }
 
     private void actualizaDatos() {
         String id = txtID.getText().toString();
         String nombre = txtNombre.getText().toString();
         String apellido = txtApellido.getText().toString();
+
+        limpiaCajas();
 
         ContentValues valores = new ContentValues();
         valores.put(UsuarioContrato.COLUMN_FIRST_NAME, nombre);
@@ -55,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
         Uri nuevaUri = Uri.withAppendedPath(UsuarioContrato.CONTENT_URI, id);
         int resultado = getContentResolver().update(nuevaUri, valores, null, null);
         txt.setText("Actualizado?: " + resultado);
+    }
+
+    private void limpiaCajas() {
+        txtID.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
     }
 
     private void leeValores() {
@@ -81,9 +104,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertaValor() {
+        String nombre = txtNombre.getText().toString();
+        String apellido = txtApellido.getText().toString();
+
+        limpiaCajas();
+
         ContentValues valores = new ContentValues();
-        valores.put(UsuarioContrato.COLUMN_FIRST_NAME, "Pedro");
-        valores.put(UsuarioContrato.COLUMN_LAST_NAME, "Paramo");
+        valores.put(UsuarioContrato.COLUMN_FIRST_NAME, nombre);
+        valores.put(UsuarioContrato.COLUMN_LAST_NAME, apellido);
         Uri nuevoUsuario = getContentResolver().insert(UsuarioContrato.CONTENT_URI, valores);
         txt.setText("Insertado: " + nuevoUsuario.toString());
     }
